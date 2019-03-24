@@ -1,0 +1,8 @@
+$\$$ git bisect start <bad commit> <good commit>
+# Quand la version courante est mauvaise :  
+$\$$ git bisect bad 
+# Quand la version courante est bonne : 
+$\$$ git bisect good
+
+
+

@@ -42,47 +42,14 @@
   \end{frame}
 }
 
-%\input{listings.tex}
+\input{listings.tex}
 
 \begin{document}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\title{\centering Git, Essayons de reprendre le contrôle !}
-\subtitle{}
-\author{
-	\centering
-  Antoine de {\sc Roquemaurel}\\
-	  \begin{tabular}{ccc}
-		  \includegraphics[height=7pt]{images/twitter.png}~satenske
-	  \end{tabular}
-	  \\
-  {\footnotesize
-	  \vspace{10px}
-		Développeur Java consultant chez Tech Advantage\\
-  }
-}
-\date{
-	{
-	  \begin{tabular}{ccc}
-		  \includegraphics[height=1.cm]{images/logo_extia}\hspace{20px} & 
-		  \includegraphics[height=1.cm]{images/meetup_by_extia} & 
-		  \hspace{10px} \includegraphics[height=1cm]{images/logo_git}
-	  \end{tabular}
-	}
-	\\
-	\vspace{10px}
-	Meetup Java / C\# du 28 Mars 2019\\\vspace{0.9cm}
-	\vfill
-	\includegraphics[width=1cm]{images/cc-by.eps} 
-	\begin{minipage}{0.8\textwidth} 
-		\tiny Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons By 4.0\\
-	\end{minipage}
-}
-\titlepage
-\end{frame}
+\input{title.tex}
 \begin{frame}{Le logiciel de gestion de versions}
 	\begin{figure}[H]
 		\includegraphics[width=9.4cm]{images/intro/cvs.png}
@@ -130,7 +97,7 @@
 	}
 \end{frame}
 
-\section{Les bases}
+\section{Fonctionnement de Git}
 \begin{frame}{Le système décentralisé}
 	\begin{figure}[H]
 		\centering
@@ -147,8 +114,8 @@
 	\end{figure}	
 \end{frame}
 
-\section{Dans les coulisse}
-\begin{frame}{Le stockage}
+\section{Dans les coulisses}
+\begin{frame}{Le stockage des données du dépôt : les objets}
 		\begin{itemize}
 			\item<1-> Les changements de fichiers sont stockés dans le \textbf{commit}
 			\item<2-> Un \textbf{tree} représente un niveau de hiérarchie de fichiers
@@ -175,6 +142,14 @@
 			}
 		\end{figure}
 \end{frame}
+\begin{frame}{Le stockage des infos du workspace : l'index}
+	\begin{itemize}
+		\item Le fichier contient toutes les informations nécessaires à la génération d'un \textit{tree object}
+		\item Il permet la comparaison rapide entre un \textit{tree object} et le \textit{working tree}
+		\item Il contient les informations sur les \textit{merges conflicts}
+	\end{itemize}
+\end{frame}
+
 \begin{frame}{Git débite à la hash !}
 	\begin{itemize}
 		\item Tout objet du store est adressable par son contenu
@@ -185,6 +160,7 @@
 		\item Toute modification du contenu produira un changement du hash
 	\end{itemize}
 \end{frame}
+
 %\begin{frame}{Les actions de base}
 %\begin{itemize}
 %	\item \texttt{commit}
@@ -194,10 +170,180 @@
 %\end{itemize}
 %\end{frame}
 % Git débite à la hash
-\section{Le workflow Git}
-% Restons branchés
-\section{La collaboration}
 
+\section{La collaboration}
+\begin{frame}{Restons branchés : le Git-flow}
+	\begin{figure}[H]
+		\centering
+		\only<1>{
+		\includegraphics[height=0.7\textheight]{images/2-workflow/gitflow.png}
+		\caption{Un modèle de branchement\footnote{\tiny \url{https://nvie.com/posts/a-successful-git-branching-model/}}}
+		}
+		\only<2>{
+		\vspace{-1.5cm}
+		\includegraphics[height=1.1\textheight]{images/2-workflow/gitflow.png}
+		}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{De l'importance de l'historique}
+	\begin{tabular}{lc}
+	\begin{minipage}{0.4\textwidth}
+	Ingrédients : 
+	\begin{itemize}
+		\item 200g de beurre
+		\item 200g de chocolat
+		\item 4 œufs
+		\item 150g de sucre
+		\item 60g de farine
+		\item $\frac{1}{2}$ sachet de levure
+	\end{itemize}
+	\end{minipage}
+	&
+	\begin{minipage}{0.6\textwidth}
+		\begin{figure}[H]
+			\includegraphics[width=5.5cm]{images/3-collaboration/sansbranche.eps}
+			\caption{Historique sans collaboration}
+		\end{figure}
+	\end{minipage}
+	\end{tabular}
+
+\end{frame}
+\begin{frame}{Le merge : on parralélise}
+	\begin{figure}[H]
+		\includegraphics[width=9cm]{images/3-collaboration/merge.eps}
+		\caption{\texttt{git merge}}
+	\end{figure}
+\end{frame}
+\begin{frame}{Le merge : le fast-forward}
+	\begin{figure}[H]
+		\only<1>{
+		\includegraphics[height=6cm]{images/3-collaboration/ff.eps}
+		\caption{\texttt{git merge avec no-ff}}
+		}
+		\only<2>{
+		\includegraphics[height=6cm]{images/3-collaboration/ff2.eps}
+		\caption{\texttt{git merge sans no-ff}}
+		}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Le merge : le squash}
+	\begin{figure}[H]
+		\only<1>{
+		\includegraphics[height=6cm]{images/3-collaboration/merge.eps}
+		\caption{\texttt{git merge}}
+		}
+		\only<2>{
+		\includegraphics[height=6cm]{images/3-collaboration/mergesquash.eps}
+		\caption{\texttt{git merge --squash}}
+		}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Le rebase : on veut un historique linéaire}
+	\begin{figure}[H]
+		\only<1>{
+		\includegraphics[height=6cm]{images/3-collaboration/merge.eps}
+		\caption{\texttt{git merge}}
+		}
+		\only<2>{
+		\includegraphics[height=6cm]{images/3-collaboration/rebase.eps}
+		\caption{\texttt{git rebase}}
+		}
+	\end{figure}
+\end{frame}
+\begin{frame}{Le rebase : Attention à son utilisation}
+	\begin{itemize}
+		\item Jamais sur une branche partagée
+			\begin{itemize}
+				\item Un rebase réécrit l'historique et va donc changer les hash
+			\end{itemize}
+			\vfill
+		\item Si la branche à été poussée
+			\begin{itemize}
+				\item Il faut faire un push force… Et donc écraser l'historique de la branche distante !
+			\end{itemize}
+			\vfill
+		\item Principalement à utiliser pour : 
+			\begin{itemize}
+				\item Mettre à jour sa branche par rapport à la branche mère
+				\item Réécrire son historique
+			\end{itemize}
+			\vfill
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Le stash}
+\end{frame}
+
+\begin{frame}{Le cherry-Pick}
+\end{frame}
+
+\section{Utilisation avancée}
+\begin{frame}{Le {pull} devrait être interdit…}
+	\uncover<1->{
+	\begin{itemize}
+		\item Par défaut, le pull peut être vu comme un alias : 
+	\end{itemize}
+	\lstinputlisting[language=sh, caption=Un git pull si on est sur master]{pull}%
+	}
+	\begin{itemize}
+		\item<2-> Si on est pas en fast-forward, le merge va créer une branche temporaire 
+		\item<3-> Ne faire un pull que si on est en fast forward
+		\item<4-> Sinon, il faut faire
+	\end{itemize}
+	\uncover<4->{
+	\lstinputlisting[language=sh, caption=Se mettre à jour si on est sur master]{fetch}%
+	}
+\end{frame}
+
+\begin{frame}{Le rebase interactif : réécrire l'histoire}
+	\begin{tabular}{cc}
+		\begin{minipage}{0.5\textwidth}
+	\begin{figure}[H]
+		\includegraphics[height=6cm]{images/3-collaboration/rebaseinteractif.eps}
+		\caption{Un historique pourri}
+	\end{figure}
+\end{minipage}
+	&
+	\begin{minipage}{0.5\textwidth}
+		\pause
+	\begin{figure}[H]
+		\includegraphics[width=5cm]{images/3-collaboration/rebaseinteractif_2.eps}
+		\caption{Et après un peu de nettoyage}
+	\end{figure}
+\end{minipage}
+	\end{tabular}
+\end{frame}
+\begin{frame}{Le rebase interactif : réécrire l'histoire}
+	\lstinputlisting[language=sh, caption=Utilisation du rebase interactif]{rebase-interactif}%
+	\begin{itemize}
+		\item p, pick : utiliser le commit (ne change rien)
+		\item r, reword : utilise le commit, mais permet de changer le message
+		\item e, edit : utilise le commit et s'arrête pour pouvoir changer le contenu du commit
+		\item s, squash : fusionne avec le commit précédent
+		\item d, drop : supprime le commit
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Bisect : trouver d'où vient le bug}
+	\uncover<1->{
+	\begin{itemize}
+		\item Savoir depuis quel commit l'application ne fonctionne plus 
+	\end{itemize}
+	\lstinputlisting[language=sh, caption=Utilisation de git bisect]{bisect}%
+	}
+	\uncover<2>{
+	\begin{itemize}
+		\item Et si on a des tests automatisés ?
+	\end{itemize}
+	
+	\lstinputlisting[language=sh, caption=Utilisation de git bisect pour lancer les tests]{bisect2}%
+	}
+
+\end{frame}
 \appendix
 \section*{Conclusion}
 \begin{frame}
@@ -239,8 +385,9 @@
 		\item \footnotesize \texttt{\href{https://learngitbranching.js.org}{learngitbranching.js.org}}\\
 			{Apprendre Git de manière ludique}
 		\item \footnotesize \texttt{\href{https://github.com/aroquemaurel/Presentation-beamer-Git}{github.com/aroquemaurel/Presentation-beamer-Git}}\\
-			Les sources \LaTeX de cette présentation
+			Les sources \LaTeX{} de cette présentation
 	\end{itemize}
 \end{frame}
 
+\input{title.tex}
 \end{document}
