@@ -9,5 +9,6 @@
 **/*.out
 **/*.toc
 **/*.snm
+**/*converted-to.pdf
 
 
