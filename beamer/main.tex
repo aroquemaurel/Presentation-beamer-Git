@@ -30,7 +30,7 @@
 
 %% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mode<presentation> {
-	\usepackage{../LaTeX-Beamer-Theme/beamerthemeShortPresentation}
+	\usepackage{../../../LaTeX-Beamer-Theme/beamerthemeShortPresentation}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -42,7 +42,7 @@
   \end{frame}
 }
 
-\input{listings.tex}
+%\input{listings.tex}
 
 \begin{document}
 
@@ -74,7 +74,12 @@
 	}
 	\\
 	\vspace{10px}
-	Meetup Java / C\# du 28 Mars 2019	
+	Meetup Java / C\# du 28 Mars 2019\\\vspace{0.9cm}
+	\vfill
+	\includegraphics[width=1cm]{images/cc-by.eps} 
+	\begin{minipage}{0.8\textwidth} 
+		\tiny Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons By 4.0\\
+	\end{minipage}
 }
 \titlepage
 \end{frame}
@@ -186,11 +191,12 @@
 	\end{tabular}
 	\vfill
 	\begin{itemize}
-		\item \url{https://git-scm.com}\\
+		\item \footnotesize \texttt{\href{https://git-scm.com}{git-scm.com}}\\
 			{Site officiel}
-		\item \url{https://learngitbranching.js.org}\\
+		\item \footnotesize \texttt{\href{https://learngitbranching.js.org}{learngitbranching.js.org}}\\
 			{Apprendre Git de manière ludique}
-
+		\item \footnotesize \texttt{\href{https://github.com/aroquemaurel/Presentation-beamer-Git}{github.com/aroquemaurel/Presentation-beamer-Git}}\\
+			Les sources \LaTeX de cette présentation
 	\end{itemize}
 \end{frame}
 
