@@ -132,24 +132,67 @@
 
 \section{Les bases}
 \begin{frame}{Le système décentralisé}
-	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=8.5cm]{images/1-bases/git-repo.eps}
+		\caption{Système décentralisé}
+	\end{figure}
 \end{frame}
 
 \begin{frame}{La zone de transit (\textit{staging area})}
 	\begin{figure}[H]
 		\vspace{-10px}
-		\includegraphics[width=11cm]{images/section1/staging.png}
+		\includegraphics[width=11cm]{images/1-bases/staging.png}
 		\caption{Fonctionnement de Git}
 	\end{figure}	
 \end{frame}
-\begin{frame}{Les actions de base}
-\begin{itemize}
-	\item \texttt{commit}
-	\item \texttt{fetch}
-	\item \texttt{push}
-	\item \texttt{blame}
-\end{itemize}
+
+\section{Dans les coulisse}
+\begin{frame}{Le stockage}
+		\begin{itemize}
+			\item<1-> Les changements de fichiers sont stockés dans le \textbf{commit}
+			\item<2-> Un \textbf{tree} représente un niveau de hiérarchie de fichiers
+			\item<3-> Chaque version de chaque fichier est un \textbf{blob}
+			\item<4-> Les \textbf{commits} sont chainés entre eux
+			\item<5-> Les \textbf{tags}, \textbf{branches} et \textbf{HEAD} sont des pointeurs de commit
+		\end{itemize}
+		\begin{figure}[H]
+			\centering
+			\only<1>{
+			\includegraphics[width=7cm]{images/2-coulisses/data-model-1.png}
+			}
+			\only<2>{
+			\includegraphics[width=7cm]{images/2-coulisses/data-model-2.png}
+			}
+			\only<3>{
+			\includegraphics[width=7cm]{images/2-coulisses/data-model-3.png}
+			}
+			\only<4>{
+			\includegraphics[width=7cm]{images/2-coulisses/data-model-4.png}
+			}
+			\only<5>{
+			\includegraphics[width=7cm]{images/2-coulisses/data-model.png}
+			}
+		\end{figure}
 \end{frame}
+\begin{frame}{Git débite à la hash !}
+	\begin{itemize}
+		\item Tout objet du store est adressable par son contenu
+		\item Le nom unique de chaque objet est obtenu avec \texttt{SHA-1}\\
+			\begin{itemize}
+				\item Valeur sur 160 bits (nombre hexadécimal à 40 chiffres)
+			\end{itemize}
+		\item Toute modification du contenu produira un changement du hash
+	\end{itemize}
+\end{frame}
+%\begin{frame}{Les actions de base}
+%\begin{itemize}
+%	\item \texttt{commit}
+%	\item \texttt{fetch}
+%	\item \texttt{push}
+%	\item \texttt{blame}
+%\end{itemize}
+%\end{frame}
 % Git débite à la hash
 \section{Le workflow Git}
 % Restons branchés
