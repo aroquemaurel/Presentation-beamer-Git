@@ -145,7 +145,9 @@
 \begin{frame}{Le stockage des infos du workspace : l'index}
 	\begin{itemize}
 		\item Le fichier contient toutes les informations nécessaires à la génération d'un \textit{tree object}
+			\vfill
 		\item Il permet la comparaison rapide entre un \textit{tree object} et le \textit{working tree}
+			\vfill
 		\item Il contient les informations sur les \textit{merges conflicts}
 	\end{itemize}
 \end{frame}
@@ -153,10 +155,12 @@
 \begin{frame}{Git débite à la hash !}
 	\begin{itemize}
 		\item Tout objet du store est adressable par son contenu
+			\vfill
 		\item Le nom unique de chaque objet est obtenu avec \texttt{SHA-1}\\
 			\begin{itemize}
 				\item Valeur sur 160 bits (nombre hexadécimal à 40 chiffres)
 			\end{itemize}
+			\vfill
 		\item Toute modification du contenu produira un changement du hash
 	\end{itemize}
 \end{frame}
@@ -212,46 +216,64 @@
 \begin{frame}{Le merge : on parralélise}
 	\begin{figure}[H]
 		\includegraphics[width=9cm]{images/3-collaboration/merge.eps}
-		\caption{\texttt{git merge}}
 	\end{figure}
+	\lstinputlisting[language=sh]{merge}%
 \end{frame}
 \begin{frame}{Le merge : le fast-forward}
-	\begin{figure}[H]
-		\only<1>{
-		\includegraphics[height=6cm]{images/3-collaboration/ff.eps}
-		\caption{\texttt{git merge avec no-ff}}
-		}
-		\only<2>{
-		\includegraphics[height=6cm]{images/3-collaboration/ff2.eps}
-		\caption{\texttt{git merge sans no-ff}}
-		}
-	\end{figure}
+	\begin{tabular}{cc}
+		\begin{minipage}{0.5\textwidth}
+			\uncover<1->{
+				\includegraphics[width=6cm]{images/3-collaboration/ff.eps}
+				\lstinputlisting[language=sh, linewidth=5cm]{merge-noff}%
+			}
+		\end{minipage}
+		&
+		\begin{minipage}{0.5\textwidth}
+			\uncover<2->{
+		\includegraphics[height=5cm]{images/3-collaboration/ff2.eps}
+	\lstinputlisting[language=sh,linewidth=5cm]{merge-moule}%
+	}
+		\end{minipage}
+	\end{tabular}
 \end{frame}
 
 \begin{frame}{Le merge : le squash}
-	\begin{figure}[H]
-		\only<1>{
-		\includegraphics[height=6cm]{images/3-collaboration/merge.eps}
-		\caption{\texttt{git merge}}
-		}
-		\only<2>{
-		\includegraphics[height=6cm]{images/3-collaboration/mergesquash.eps}
-		\caption{\texttt{git merge --squash}}
-		}
-	\end{figure}
+	\begin{tabular}{cc}
+		\begin{minipage}{0.5\textwidth}
+			\uncover<1->{
+			\hspace{-1cm}
+				\includegraphics[width=7cm]{images/3-collaboration/merge.eps}
+				\lstinputlisting[language=sh, linewidth=5cm]{merge}%
+			}
+		\end{minipage}
+		&
+		\begin{minipage}{0.5\textwidth}
+			\uncover<2->{
+		\includegraphics[height=4.5cm]{images/3-collaboration/mergesquash.eps}
+	\lstinputlisting[language=sh,linewidth=5cm]{mergesquash}%
+	}
+		\end{minipage}
+	\end{tabular}
 \end{frame}
 
 \begin{frame}{Le rebase : on veut un historique linéaire}
-	\begin{figure}[H]
-		\only<1>{
-		\includegraphics[height=6cm]{images/3-collaboration/merge.eps}
-		\caption{\texttt{git merge}}
-		}
-		\only<2>{
-		\includegraphics[height=6cm]{images/3-collaboration/rebase.eps}
-		\caption{\texttt{git rebase}}
-		}
-	\end{figure}
+	\begin{tabular}{cc}
+		\begin{minipage}{0.5\textwidth}
+			\uncover<1->{
+			\hspace{-1.5cm}
+				\includegraphics[width=7cm]{images/3-collaboration/merge.eps}
+				\lstinputlisting[language=sh, linewidth=5cm]{merge}%
+			}
+		\end{minipage}
+		&
+		\begin{minipage}{0.5\textwidth}
+			\uncover<2->{
+			\hspace{-0.5cm}
+		\includegraphics[height=5cm]{images/3-collaboration/rebase.eps}
+	\lstinputlisting[language=sh,linewidth=5cm]{rebase}%
+	}
+		\end{minipage}
+	\end{tabular}
 \end{frame}
 \begin{frame}{Le rebase : Attention à son utilisation}
 	\begin{itemize}
@@ -287,7 +309,7 @@
 	\begin{itemize}
 		\item Par défaut, le pull peut être vu comme un alias : 
 	\end{itemize}
-	\lstinputlisting[language=sh, caption=Un git pull si on est sur master]{pull}%
+	\lstinputlisting[language=sh, title=Un git pull si on est sur master]{pull}%
 	}
 	\begin{itemize}
 		\item<2-> Si on est pas en fast-forward, le merge va créer une branche temporaire 
@@ -295,7 +317,7 @@
 		\item<4-> Sinon, il faut faire
 	\end{itemize}
 	\uncover<4->{
-	\lstinputlisting[language=sh, caption=Se mettre à jour si on est sur master]{fetch}%
+	\lstinputlisting[language=sh, title=Se mettre à jour si on est sur master]{fetch}%
 	}
 \end{frame}
 
@@ -318,13 +340,13 @@
 	\end{tabular}
 \end{frame}
 \begin{frame}{Le rebase interactif : réécrire l'histoire}
-	\lstinputlisting[language=sh, caption=Utilisation du rebase interactif]{rebase-interactif}%
+	\lstinputlisting[language=sh, title=Utilisation du rebase interactif]{rebase-interactif}%
 	\begin{itemize}
-		\item p, pick : utiliser le commit (ne change rien)
-		\item r, reword : utilise le commit, mais permet de changer le message
-		\item e, edit : utilise le commit et s'arrête pour pouvoir changer le contenu du commit
-		\item s, squash : fusionne avec le commit précédent
-		\item d, drop : supprime le commit
+		\item<1-> \textbf{p, pick} : utiliser le commit (ne change rien)
+		\item<2-> \textbf{r, reword} : utilise le commit, mais permet de changer le message
+		\item<3-> \textbf{e, edit} : utilise le commit et s'arrête pour pouvoir changer le contenu du commit
+		\item<4-> \textbf{s, squash} : fusionne avec le commit précédent
+		\item<5-> \textbf{d, drop} : supprime le commit
 	\end{itemize}
 \end{frame}
 
@@ -333,14 +355,14 @@
 	\begin{itemize}
 		\item Savoir depuis quel commit l'application ne fonctionne plus 
 	\end{itemize}
-	\lstinputlisting[language=sh, caption=Utilisation de git bisect]{bisect}%
+	\lstinputlisting[language=sh, title=Utilisation de git bisect]{bisect}%
 	}
 	\uncover<2>{
 	\begin{itemize}
 		\item Et si on a des tests automatisés ?
 	\end{itemize}
 	
-	\lstinputlisting[language=sh, caption=Utilisation de git bisect pour lancer les tests]{bisect2}%
+	\lstinputlisting[language=sh, title=Utilisation de git bisect pour lancer les tests]{bisect2}%
 	}
 
 \end{frame}
