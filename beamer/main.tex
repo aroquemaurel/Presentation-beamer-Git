@@ -319,7 +319,25 @@
 	}
 \end{frame}
 
-\begin{frame}{Le cherry-Pick}
+\begin{frame}{Le cherry-Pick : Réappliquer un commit}
+	\begin{itemize}
+		\item Permet d'appliquer le << patch >> d'un ou plusieurs commits sur une autre branche 
+		\item Cela va créer de nouveaux commits, avec des hashs différents
+		\item Utile pour récupérer des modifications ponctuelles 
+	\end{itemize}
+	\vfill
+	\uncover<2>{
+	\begin{itemize}
+		\item \texttt{git cherry-pick commit} 
+			\begin{itemize}
+				\item applique le commit sur la branche courante
+			\end{itemize}
+		\item \texttt{git cherry-pick commit1..commit2} 
+			\begin{itemize}
+				\item applique le range de commits sur la branche courante
+			\end{itemize}
+	\end{itemize}
+	}
 \end{frame}
 
 \section{Utilisation avancée}
@@ -400,7 +418,7 @@
 
 	\only<2>{
 	{
-		\vspace{10.01cm}
+		\vspace{10.00cm}
 		\hspace{0.5cm}
         \begin{tikzpicture}[remember picture,overlay]
             \node[at=(current page.center)] {
