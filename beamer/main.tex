@@ -297,7 +297,26 @@
 \end{frame}
 
 
-\begin{frame}{Le stash}
+\begin{frame}{Le stash : mettre des modifications de côté}
+	\begin{itemize}
+		\item Utile pour pouvoir changer de brancher ou se mettre à jour sans commiter
+		\item Gestion des conflits lors de l'application du stash 
+	\end{itemize}
+	\vfill
+	\uncover<2->{
+	\begin{itemize}
+		\item Le stash est une pile : 
+			\begin{itemize}
+				\item \texttt{git stash} pour empiler 
+				\item \texttt{git stash pop} pour dépiler
+				\end{itemize}
+		\item Possibilité d'y accéder comme une liste 
+			\begin{itemize}
+				\item \texttt{git stash list}
+				\item \texttt{git stash apply stash\_name}
+			\end{itemize}
+	\end{itemize}
+	}
 \end{frame}
 
 \begin{frame}{Le cherry-Pick}
